@@ -20,7 +20,7 @@ class Tree:
 
     def get_parent(self, n):
         if (n in self.Nodes) or (n in self.Leaves):
-            return int(np.floor(n/2))
+            return np.floor(n/2)
         else:
             raise Exception('Node index is not correct')
 
