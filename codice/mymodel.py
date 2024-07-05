@@ -9,7 +9,6 @@ def modello_albero(alpha, beta, delta, u, umax, umin, n_features, xtrain, ytrain
 
     # SETS
     P = [i for i in range(len(xtrain[0]))] # features index
-    print(len(xtrain[0]))
     TB = [i for i in range(1, np.power(2, delta))]
     TB1 = [i for i in range(2, np.power(2, delta))]
     TL = [i for i in range(np.power(2, delta), np.power(2, delta + 1))]
@@ -17,8 +16,6 @@ def modello_albero(alpha, beta, delta, u, umax, umin, n_features, xtrain, ytrain
     K = [i for i in range(len(np.unique(ytrain)))] # index classes
     mm = [tree.get_left_ancestors(t) for t in TL]
     mm1 = [tree.get_right_ancestors(t) for t in TL]
-
-    print(mm)
 
     TOT1 =  [(i, TL[t], m) for i in I for t in range(len(TL)) for m in mm[t]]
     TOT2 =  [(i, TL[t], m) for i in I for t in range(len(TL)) for m in mm1[t]]
@@ -35,7 +32,6 @@ def modello_albero(alpha, beta, delta, u, umax, umin, n_features, xtrain, ytrain
     model.n2 = pyo.Var(TL, domain=pyo.NonNegativeIntegers) # Nt
     model.c = pyo.Var(K, TL, domain=pyo.Binary) 
 
-    print([model.d[i].value for i in TB])
 
     # PARAMETERS  
     def x_init(mdl, i, j):

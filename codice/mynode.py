@@ -38,7 +38,7 @@ def init_bfs(root, avalues, bvalues, dvalues, classnames, depth):
             current.b = bvalues[current.idx].value
             current.d = dvalues[current.idx].value 
         else:
-            current.classname = classnames[current.idx- (2**depth-1)]
+            current.classname = classnames[current.idx- (2**depth)]
         
         if current.leftChild:
             queue.append(current.leftChild)
@@ -47,7 +47,7 @@ def init_bfs(root, avalues, bvalues, dvalues, classnames, depth):
 
 def validate(x, yvalue, root:Node) -> int: # 0 -> wrong classfication, 1 -> correct
     node = root
-    while node.leftChild != None or node.rightChild != None: # siamo neel branch
+    while node.leftChild != None or node.rightChild != None: # siamo nel branch
         if np.dot(node.a,x) < node.b:
           node = node.leftChild  
         else:
@@ -55,22 +55,3 @@ def validate(x, yvalue, root:Node) -> int: # 0 -> wrong classfication, 1 -> corr
     if node.classname == yvalue:
         return 1
     return 0
-
-
-# Esempio di utilizzo
-depth = 3
-root = create_complete_tree(1, depth)
-print_tree(root)
-
-
-
-
-def validate_entry(self, node, x):
-    if(node.d == 0):
-        ++node.count
-    elif(np.dot(node.a,x) < node.b):
-        self.validate_entry(self,node.leftChild,x)
-    elif(np.dot(node.a,x) >= node.b):
-        self.validate_entry(self, node.rightChild, x)
-
-
