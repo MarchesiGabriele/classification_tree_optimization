@@ -21,9 +21,9 @@ def create_complete_tree(idx, depth, current_depth=0):
         node.rightChild = create_complete_tree(2*idx+1, depth, current_depth + 1)
     return node
 
-def print_tree(node, level=0):
+def print_tree(node:Node, level=0):
     if node is not None:
-        print(' ' * 4 * level + '->', f'Branch{node.idx}' if node.isbranch else f'Leaf{node.idx}')
+        print(' ' * 4 * level + '->', f'Branch{node.idx}, a:f{node.a}, b:{node.b}, d:{node.d}' if node.isbranch else f'Leaf{node.idx}, class:{node.classname}')
         print_tree(node.leftChild, level + 1)
         print_tree(node.rightChild, level + 1)
 
