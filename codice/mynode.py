@@ -12,10 +12,10 @@ class Node:
         self.rightChild = right
 
 def create_complete_tree(idx, depth, current_depth=0):
-    if current_depth == depth:
+    if current_depth == depth+1:
         return None
     node = Node(idx)
-    node.isbranch = current_depth < depth - 1
+    node.isbranch = (current_depth < depth)
     if node.isbranch:
         node.leftChild = create_complete_tree(2*idx, depth, current_depth + 1)
         node.rightChild = create_complete_tree(2*idx+1, depth, current_depth + 1)
